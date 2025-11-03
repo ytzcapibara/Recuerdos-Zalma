@@ -1,11 +1,12 @@
 <!doctype html>
-
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nuestros recuerdos en un solo lugar</title>
-  <meta name="description" content="Página privada de recuerdos para Zalma" />  <!-- Tipografía (si estás offline el navegador usará la fuente de sistema) -->  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">  <style>
+  <meta name="description" content="Página privada de recuerdos para Zalma" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
     :root{
       --rosa:#ffd7e6;
       --celeste:#d7f0ff;
@@ -15,69 +16,46 @@
       --gold:#f2d8a7;
     }
     html,body{height:100%;margin:0;font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:var(--text);background:linear-gradient(160deg,var(--rosa),var(--celeste));}
-
-    /* Contenedor centrado */
     .wrap{max-width:980px;margin:32px auto;background:linear-gradient(180deg,rgba(255,255,255,0.75),rgba(255,255,255,0.9));box-shadow:0 8px 30px rgba(0,0,0,0.12);border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,0.6)}
-
     header{padding:36px 28px 18px;background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));display:flex;align-items:center;gap:20px}
     .hero{flex:1}
     .title{font-family:'Dancing Script', cursive;font-size:34px;margin:0;color:#6b2233}
     .subtitle{margin:6px 0 0;font-size:14px;color:#444}
     .cover-figure{width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--accent));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
     .cover-figure img{width:100%;height:100%;object-fit:cover;border-radius:12px}
-
     nav{display:flex;gap:8px;align-items:center}
     .btn{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.85);border:1px solid rgba(0,0,0,0.06);cursor:pointer;font-weight:600}
     .btn.primary{background:linear-gradient(90deg,var(--rosa),var(--celeste));box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-
     main{display:grid;grid-template-columns:1fr 360px;gap:18px;padding:22px}
-
-    /* contenido principal */
     .panel{background:transparent;padding:18px;border-radius:12px}
     .card{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
-
-    /* Poemas */
     .poem{font-family:'Dancing Script', cursive;font-size:20px;line-height:1.5;color:#4b2a36}
     .poem-meta{font-size:12px;color:#777;margin-top:8px}
-
-    /* Galería */
     .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
     .photo{background:#f7f7f7;border-radius:10px;overflow:hidden;height:110px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(0,0,0,0.04)}
     .photo img{width:100%;height:100%;object-fit:cover}
-
-    /* Recuerdos */
     .memory{display:flex;gap:12px;align-items:center}
     .memory-thumb{width:72px;height:72px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,0.04)}
     .memory-desc{flex:1}
-
-    /* Barra lateral */
     aside{padding:18px}
     .small{font-size:13px;color:#666}
     .muted{color:#999;font-size:12px}
-
-    /* Modal imagen */
     .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .18s}
     .modal.open{opacity:1;pointer-events:auto}
     .modal-content{background:white;border-radius:12px;padding:12px;max-width:900px;max-height:90vh;overflow:auto}
     .modal-content img{max-width:100%;height:auto;border-radius:8px}
-
-    /* footer */
     footer{padding:16px 22px;background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));text-align:center;font-size:13px;color:#666}
-
-    /* overlay de contraseña */
     .gate{position:fixed;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,255,255,0.96));display:flex;align-items:center;justify-content:center;z-index:9999}
     .gate .box{width:92%;max-width:420px;padding:22px;border-radius:12px;background:linear-gradient(180deg,var(--marco),#fff);box-shadow:0 12px 36px rgba(0,0,0,0.12);text-align:center}
     .gate input{width:100%;padding:10px;border-radius:10px;border:1px solid #eee;margin-top:12px}
-
-    /* hearts animation */
     .hearts{position:absolute;inset:0;pointer-events:none}
     .heart{position:absolute;width:16px;height:16px;transform:translate(-50%,-50%);opacity:0.9}
-
     @media(max-width:880px){main{grid-template-columns:1fr;}.gallery{grid-template-columns:repeat(2,1fr);}aside{order:2}}
-  </style></head>
+  </style>
+</head>
 <body>
-  <!-- Password gate (client-side) -->
-  <div id="gate" class="gate" aria-hidden="false">
+  <!-- Contraseña -->
+  <div id="gate" class="gate">
     <div class="box">
       <h2 style="font-family:'Dancing Script',cursive;margin:0;font-size:26px">Nuestros recuerdos</h2>
       <p class="muted">Página privada — ingresa la contraseña para continuar</p>
@@ -88,178 +66,96 @@
       </div>
       <p class="small" style="margin-top:10px;color:#a55;display:none" id="error">Contraseña incorrecta</p>
     </div>
-  </div>  <div class="hearts" aria-hidden="true" id="hearts"></div>  <div class="wrap" id="site" style="display:none">
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <!-- Contenido -->
+  <div class="wrap" id="site" style="display:none">
     <header>
       <div class="hero">
         <h1 class="title">Nuestros recuerdos en un solo lugar</h1>
         <div class="subtitle">Para Zalma — cada momento, un tesoro</div>
       </div>
-      <div class="cover-figure" aria-hidden="true">
-        <!-- Reemplaza por una foto tuya o de ella llamada cover.jpg en la misma carpeta -->
+      <div class="cover-figure">
         <img src="placeholder-cover.svg" id="coverImg" alt="cover" />
       </div>
-    </header><main>
-  <section class="panel">
-
-    <!-- CARD: Bienvenida y controles de música -->
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div>
-          <div style="font-weight:700">Bienvenido</div>
-          <div class="muted">Desliza, explora y encuentra recuerdos especiales.</div>
+    </header>
+    <main>
+      <section class="panel">
+        <div class="card" id="poemsCard">
+          <h3>Poemas</h3>
+          <article class="poem" data-index="0">
+            <div>En la calma de tus ojos me pierdo,</div>
+            <div>y encuentro la razón de mi verso.</div>
+            <div>Tu risa, mi refugio claro,</div>
+            <div>tu nombre, mi mapa y mi faro.</div>
+            <div class="poem-meta">— Tu poeta</div>
+          </article>
+          <article class="poem" style="display:none" data-index="1">
+            <div>Guardo en un bolsillo la promesa</div>
+            <div>de cada beso que aún no te di;</div>
+            <div>en cada recuerdo una sorpresa,</div>
+            <div>y en cada mañana, un porvenir.</div>
+            <div class="poem-meta">— Noche de enero</div>
+          </article>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button class="btn" id="prevPoem">Anterior</button>
+            <button class="btn primary" id="nextPoem">Siguiente</button>
+            <button class="btn" id="editPoem">Editar (plantilla)</button>
+            <button class="btn" id="addPoem">Agregar poema</button>
+          </div>
         </div>
-        <div>
-          <button class="btn" id="playToggle">▶ Reproducir</button>
+
+        <div class="card">
+          <h3>Galería</h3>
+          <div class="gallery" id="gallery">
+            <div class="photo" data-src="photo1.jpg"><img src="placeholder-cover.svg" alt="Foto 1"></div>
+            <div class="photo" data-src="photo2.jpg"><img src="placeholder-cover.svg" alt="Foto 2"></div>
+            <div class="photo" data-src="photo3.jpg"><img src="placeholder-cover.svg" alt="Foto 3"></div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div style="margin-top:12px;font-size:13px;color:#666">Puedes reemplazar el archivo de audio por <code>music.mp3</code> en la misma carpeta de este HTML.</div>
-      <audio id="bgAudio" loop preload="auto">
-        <source src="music.mp3" type="audio/mpeg">
-        <!-- Si no hay archivo, se quedará en silencio. -->
-      </audio>
-    </div>
-
-    <!-- CARD: Poemas -->
-    <div class="card" id="poemsCard">
-      <h3 style="margin:0 0 8px 0">Poemas</h3>
-
-      <!-- Poema de ejemplo 1 -->
-      <article class="poem" data-index="0">
-        <div>En la calma de tus ojos me pierdo,</div>
-        <div>y encuentro la razón de mi verso.</div>
-        <div>Tu risa, mi refugio claro,</div>
-        <div>tu nombre, mi mapa y mi faro.</div>
-        <div class="poem-meta">— Tu poeta</div>
-      </article>
-
-      <!-- Poema de ejemplo 2 -->
-      <article class="poem" style="display:none" data-index="1">
-        <div>Guardo en un bolsillo la promesa</div>
-        <div>de cada beso que aún no te di;</div>
-        <div>en cada recuerdo una sorpresa,</div>
-        <div>y en cada mañana, un porvenir.</div>
-        <div class="poem-meta">— Noche de enero</div>
-      </article>
-
-      <div style="display:flex;gap:8px;margin-top:12px">
-        <button class="btn" id="prevPoem">Anterior</button>
-        <button class="btn primary" id="nextPoem">Siguiente</button>
-        <button class="btn" id="editPoem">Editar (plantilla)</button>
-      </div>
-
-    </div>
-
-    <!-- CARD: Galería -->
-    <div class="card">
-      <h3 style="margin:0 0 8px 0">Galería</h3>
-      <div class="gallery" id="gallery">
-        <!-- Imágenes de ejemplo: son SVGs incrustados como marcadores -->
-        <div class="photo" data-src="photo1.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23ffd7e6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='22' fill='%236b2233' font-family='Arial'>Foto 1 - Reemplaza por photo1.jpg</text></svg>" alt="Foto 1"></div>
-        <div class="photo" data-src="photo2.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23d7f0ff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='22' fill='%234b2a36' font-family='Arial'>Foto 2 - Reemplaza por photo2.jpg</text></svg>" alt="Foto 2"></div>
-        <div class="photo" data-src="photo3.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23fff8f9'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='22' fill='%236b2233' font-family='Arial'>Foto 3 - Reemplaza por photo3.jpg</text></svg>" alt="Foto 3"></div>
-        <div class="photo" data-src="photo4.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23f7c6d9'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='22' fill='%234b2a36' font-family='Arial'>Foto 4 - Reemplaza por photo4.jpg</text></svg>" alt="Foto 4"></div>
-        <div class="photo" data-src="photo5.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23d7f0ff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='22' fill='%236b2233' font-family='Arial'>Foto 5 - Reemplaza por photo5.jpg</text></svg>" alt="Foto 5"></div>
-        <div class="photo" data-src="photo6.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23ffd7e6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='22' fill='%234b2a36' font-family='Arial'>Foto 6 - Reemplaza por photo6.jpg</text></svg>" alt="Foto 6"></div>
-      </div>
-    </div>
-
-    <!-- CARD: Recuerdos y regalos -->
-    <div class="card">
-      <h3 style="margin:0 0 8px 0">Recuerdos & Regalos</h3>
-
-      <div class="memory">
-        <div class="memory-thumb"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><rect width='100%' height='100%' fill='%23fff8f9'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='%236b2233'>Anillo (ejemplo)</text></svg>" alt="thumb"></div>
-        <div class="memory-desc">
-          <div style="font-weight:700">Anillo sorpresa</div>
-          <div class="muted">Fecha: 14 Feb 2024 — Una promesa pequeña, un gran momento.</div>
+      <aside>
+        <div class="card">
+          <h4>Información</h4>
+          <div class="small">Página: "Nuestros recuerdos"</div>
+          <div class="small">Dedicado a: <strong>Zalma</strong></div>
         </div>
-      </div>
+      </aside>
+    </main>
+    <footer>
+      <div>Hecho con ❤ para Zalma.</div>
+    </footer>
+  </div>
 
-      <div class="memory" style="margin-top:10px">
-        <div class="memory-thumb"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><rect width='100%' height='100%' fill='%23ffd7e6'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='%234b2a36'>Carta</text></svg>" alt="thumb"></div>
-        <div class="memory-desc">
-          <div style="font-weight:700">Carta escondida</div>
-          <div class="muted">Una carta que guardas en su libro favorito.</div>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  <aside>
-    <div class="card">
-      <h4 style="margin:0 0 8px 0">Información</h4>
-      <div class="small">Página: "Nuestros recuerdos en un solo lugar"</div>
-      <div class="small" style="margin-top:8px">Dedicado a: <strong>Zalma</strong></div>
-      <div class="small muted" style="margin-top:12px">Consejo: Para que la página suene en tu teléfono, pon <code>music.mp3</code> en la misma carpeta.</div>
-    </div>
-
-    <div class="card">
-      <h4 style="margin:0 0 8px 0">Acciones</h4>
-      <button class="btn" id="addPoem">Agregar poema (plantilla)</button>
-      <button class="btn" id="addMemory">Agregar recuerdo (ejemplo)</button>
-      <div style="margin-top:8px;font-size:12px;color:#666">Los botones agregan elementos de ejemplo que luego puedes editar.</div>
-    </div>
-
-    <div class="card">
-      <h4 style="margin:0 0 8px 0">Ayuda rápida</h4>
-      <ul style="padding-left:18px;margin:0;color:#666">
-        <li>Reemplaza los <code>photoX.jpg</code> por tus fotos.</li>
-        <li>Sustituye <code>music.mp3</code> por tu canción instrumental favorita.</li>
-        <li>Abre <code>index.html</code> en el navegador para verlo sin internet.</li>
-      </ul>
-    </div>
-
-  </aside>
-</main>
-
-<footer>
-  <div>Hecho con ❤ para Zalma. Guarda este archivo con cuidado.</div>
-</footer>
-
-  </div>  <!-- Modal de imagen -->  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
     <div class="modal-content" id="modalContent"></div>
-  </div>  <script>
-    // ---------- Contraseña (client-side) ----------
-    const GATE = document.getElementById('gate');
-    const SITE = document.getElementById('site');
+  </div>
+
+  <script>
+    // ---------- Contraseña ----------
+    const PASSWORD = 'zalma';
     const tryBtn = document.getElementById('tryBtn');
-    const hintBtn = document.getElementById('hintBtn');
     const pwdInput = document.getElementById('pwd');
     const error = document.getElementById('error');
-
-    // CONTRASEÑA POR DEFECTO (puedes cambiarla) - esta verificación es solo del lado cliente
-    const PASSWORD = 'Zalma';
-
-    function unlock(pw){
-      if(!pw) return false;
-      if(pw.toLowerCase() === PASSWORD){
-        sessionStorage.setItem('recuerdos_unlocked', '1');
-        GATE.style.display='none';
-        SITE.style.display='block';
-        document.title = 'Nuestros recuerdos — Zalma';
-        startHearts();
-        return true;
-      }
-      return false;
-    }
+    const GATE = document.getElementById('gate');
+    const SITE = document.getElementById('site');
 
     tryBtn.addEventListener('click', ()=>{
-      const val = pwdInput.value.trim();
-      if(unlock(val)) return;
-      error.style.display='block';
-      setTimeout(()=>error.style.display='none',1400);
+      const val = pwdInput.value.trim().toLowerCase();
+      if(val === PASSWORD){
+        GATE.style.display='none';
+        SITE.style.display='block';
+        startHearts();
+      } else {
+        error.style.display='block';
+        setTimeout(()=>error.style.display='none',1400);
+      }
     });
-    hintBtn.addEventListener('click', ()=>alert('La pista: el nombre a quien está dedicada la página'));
 
-    // Si ya desbloqueado en la sesión
-    if(sessionStorage.getItem('recuerdos_unlocked') === '1'){
-      GATE.style.display='none';
-      SITE.style.display='block';
-      startHearts();
-    }
+    document.getElementById('hintBtn').addEventListener('click', ()=>alert('La pista: el nombre a quien está dedicada la página'));
 
     // ---------- Hearts animation ----------
     function startHearts(){
@@ -274,17 +170,16 @@
         el.style.left = x+'%';
         el.style.top = y+'%';
         el.style.opacity = 0.6 + Math.random()*0.4;
-        el.innerHTML = <svg width="20" height="20" viewBox="0 0 24 24" fill="${colors[i%colors.length]}" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7-4.35-9-7.5C1.5 10.5 4 .5 8 3.5 12 6.5 12 6.5 12 6.5s0 0 4-3C20 0.5 22.5 10.5 21 13.5 19 16.65 12 21 12 21z"/></svg>;
+        el.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="${colors[i%colors.length]}" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7-4.35-9-7.5C1.5 10.5 4 .5 8 3.5 12 6.5 12 6.5 12 6.5s0 0 4-3C20 0.5 22.5 10.5 21 13.5 19 16.65 12 21 12 21z"/></svg>`;
         container.appendChild(el);
-        // float animation
         el.animate([
           { transform: 'translateY(0) scale(1)', opacity: el.style.opacity },
-          { transform: translateY(-${20+Math.random()*40}px) scale(${1+Math.random()*0.6}), opacity: 0 }
+          { transform: `translateY(-${20+Math.random()*40}px) scale(${1+Math.random()*0.6})`, opacity: 0 }
         ],{duration:8000+Math.random()*8000,iterations:Infinity,delay: Math.random()*2000});
       }
     }
 
-    // ---------- Poems navigation & editing ----------
+    // ---------- Poemas ----------
     let poemIndex = 0;
     const poems = Array.from(document.querySelectorAll('#poemsCard .poem'));
     document.getElementById('nextPoem').addEventListener('click', ()=>{
@@ -299,7 +194,7 @@
     });
 
     document.getElementById('editPoem').addEventListener('click', ()=>{
-      const newText = prompt('Pega aquí tu poema (líneas separadas por \n):','');
+      const newText = prompt('Pega aquí tu poema (líneas separadas por \\n):','');
       if(!newText) return;
       const lines = newText.split('\n');
       const el = document.createElement('article');
@@ -312,7 +207,16 @@
       poemIndex = poems.length-1;
     });
 
-    // ---------- Gallery modal ----------
+    document.getElementById('addPoem').addEventListener('click', ()=>{
+      const template = 'Hoy te escribo porque…\nEres mi calma y mi impulso.';
+      const el = document.createElement('article'); el.className='poem';
+      template.split('\n').forEach(l=>{ const d = document.createElement('div'); d.textContent = l; el.appendChild(d); });
+      const meta = document.createElement('div'); meta.className='poem-meta'; meta.textContent='— Plantilla'; el.appendChild(meta);
+      document.getElementById('poemsCard').insertBefore(el, document.getElementById('poemsCard').querySelector('div'));
+      poems.push(el);
+    });
+
+    // ---------- Galería ----------
     const gallery = document.getElementById('gallery');
     gallery.addEventListener('click', (e)=>{
       const photo = e.target.closest('.photo');
@@ -327,48 +231,10 @@
       modal.classList.add('open');
       modal.setAttribute('aria-hidden','false');
       if(!src) return;
-      // If the image file exists in the same folder, the browser will load it.
-      modalContent.innerHTML = <img src="${src}" alt="foto" />;
+      modalContent.innerHTML = `<img src="${src}" alt="foto" />`;
     }
     modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
     function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); modalContent.innerHTML=''; }
-
-    // ---------- Play / pause music ----------
-    const audio = document.getElementById('bgAudio');
-    const playToggle = document.getElementById('playToggle');
-    playToggle.addEventListener('click', ()=>{
-      if(audio.paused){ audio.play().catch(()=>{}); playToggle.textContent='⏸ Pausa'; }
-      else{ audio.pause(); playToggle.textContent='▶ Reproducir'; }
-    });
-
-    // If autoplay blocked, show appropriate text
-    audio.addEventListener('play', ()=> playToggle.textContent='⏸ Pausa');
-    audio.addEventListener('pause', ()=> playToggle.textContent='▶ Reproducir');
-
-    // ---------- Add example memory or poem ----------
-    document.getElementById('addMemory').addEventListener('click', ()=>{
-      const container = document.querySelector('.card .memory').parentElement;
-      const div = document.createElement('div');
-      div.className='memory';
-      div.style.marginTop='10px';
-      div.innerHTML = <div class="memory-thumb"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><rect width='100%' height='100%' fill='%23fff8f9'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='%236b2233'>Regalo</text></svg>" alt="thumb"></div><div class="memory-desc"><div style="font-weight:700">Nuevo recuerdo</div><div class="muted">Describe aquí lo que pasó.</div></div>;
-      container.appendChild(div);
-    });
-
-    document.getElementById('addPoem').addEventListener('click', ()=>{
-      const template = 'Hoy te escribo porque…\nEres mi calma y mi impulso.';
-      const el = document.createElement('article'); el.className='poem';
-      template.split('\n').forEach(l=>{ const d = document.createElement('div'); d.textContent = l; el.appendChild(d); });
-      const meta = document.createElement('div'); meta.className='poem-meta'; meta.textContent='— Plantilla'; el.appendChild(meta);
-      document.getElementById('poemsCard').insertBefore(el, document.getElementById('poemsCard').querySelector('div'));
-    });
-
-    // ---------- Small UX: replace cover placeholder if cover.jpg exists ----------
-    const coverImg = document.getElementById('coverImg');
-    // Intenta cargar cover.jpg — si existe se mostrará, si no se queda el svg
-    const tryCover = new Image(); tryCover.src='cover.jpg'; tryCover.onload = ()=>{ coverImg.src='cover.jpg'; };
-
-    // FIN
   </script>
 </body>
 </html>
