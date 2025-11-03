@@ -360,7 +360,7 @@
       const el = document.createElement('article'); el.className='poem';
       template.split('\n').forEach(l=>{ const d = document.createElement('div'); d.textContent = l; el.appendChild(d); });
       const meta = document.createElement('div'); meta.className='poem-meta'; meta.textContent='— Plantilla'; el.appendChild(meta);
-      document.getElementById('poemsCard').insertBefore(el, document.getElementBy('poemsCard').querySelector('div'));
+      document.getElementById('poemsCard').insertBefore(el, document.getElementById('poemsCard').querySelector('div'));
     });
 
     // ---------- Small UX: replace cover placeholder if cover.jpg exists ----------
